@@ -1,4 +1,4 @@
-# ShimA simple plugin that executes another program.
+# Shim a simple plugin that executes another program.
 
 `Shim` takes the type of the module and executes the apropriate file in the plugins directory.
 
