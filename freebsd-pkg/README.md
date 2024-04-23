@@ -14,5 +14,5 @@ Packages:
     - "fish"
 ```
 
-`ExtraFlags` can remain empty, the default flags passed to pacman are `install -y`
+`ExtraFlags` can remain empty, the default flags passed to pkg are `install -y`
 
