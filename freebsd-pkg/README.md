@@ -8,7 +8,7 @@ A plugin to install packages using FreeBSD's `pkg(8)` written in rust.
 Name: PkgModule
 Type: Pkg
 ExtraFlags:
-	- "--debug"
+    - "--debug"
 Packages:
     - "bash"
     - "fish"
