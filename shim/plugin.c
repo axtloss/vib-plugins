@@ -6,6 +6,11 @@
 #include <yyjson.h>
 #include <string.h>
 
+extern const char *PlugInfo()
+{
+  return "{\"Name\":\"shim\",\"Type\":\"1\"}";
+}
+
 extern const char *BuildModule (char *moduleInterface, char *recipeInterface)
 {
   yyjson_doc *module = yyjson_read(moduleInterface, strlen(moduleInterface), 0);
@@ -21,7 +26,7 @@ extern const char *BuildModule (char *moduleInterface, char *recipeInterface)
   char *pluginPath = malloc(sizeof(char)*(int)yyjson_get_len(recipePluginPath));
   strcpy(pluginPath, yyjson_get_str(recipePluginPath));
   yyjson_doc_free(recipe);
-  
+
   printf("[SHIM] Plugin Path: %s\n", pluginPath);
   printf("[SHIM] Name: %s\n", name);
   printf("[SHIM] Executing plugin: %s/%s\n", pluginPath, name);
@@ -30,7 +35,7 @@ extern const char *BuildModule (char *moduleInterface, char *recipeInterface)
   fptr = fopen("/tmp/meow", "w");
   fprintf(fptr, "%s\n%s", moduleInterface, recipeInterface);
   fclose(fptr);
-  
+
   char *command = malloc(sizeof(char)*(strlen(pluginPath)+strlen(name))+1);
   sprintf(command, "%s/%s /tmp/meow", pluginPath, name);
   FILE *fp;
@@ -52,7 +57,7 @@ extern const char *BuildModule (char *moduleInterface, char *recipeInterface)
       strcpy(input + cur_len, buffer);
       cur_len += buf_len;
     }
-  
+
   pclose(fp);
   return input;
 }

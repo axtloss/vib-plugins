@@ -17,6 +17,12 @@ struct PkgModule {
 }
 
 #[no_mangle]
+pub unsafe extern "C" fn PlugInfo() -> *mut c_char {
+    let rtrn = CString::new("{\"Name\":\"freebsd-pkg\",\"Type\":\"0\"}").expect("ERROR: CString::new failed");
+    rtrn.into_raw()
+}
+
+#[no_mangle]
 pub unsafe extern "C" fn BuildModule(module_interface: *const c_char, recipe_interface: *const c_char) -> *mut c_char {
     let recipe = CStr::from_ptr(recipe_interface);
     let module = CStr::from_ptr(module_interface);
@@ -31,6 +37,6 @@ fn build_module(module_interface: String, _: String) -> String {
 	Ok(v) => v,
 	Err(error) => return format!("ERROR: {}", error),
     };
-    
+
     format!("pkg install -y {} {}", module.ExtraFlags.join(" "), module.Packages.unwrap_or(vec!["".to_string()]).join(" "))
 }
