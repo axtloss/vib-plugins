@@ -8,7 +8,7 @@
 
 extern const char *PlugInfo()
 {
-  return "{\"Name\":\"shim\",\"Type\":\"1\"}";
+  return "{\"Name\":\"shim\",\"Type\":\"1\",\"Usecontainercmds\":0}";
 }
 
 extern const char *BuildModule (char *moduleInterface, char *recipeInterface)

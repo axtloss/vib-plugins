@@ -18,7 +18,7 @@ struct PkgModule {
 
 #[no_mangle]
 pub unsafe extern "C" fn PlugInfo() -> *mut c_char {
-    let rtrn = CString::new("{\"Name\":\"freebsd-pkg\",\"Type\":\"0\"}").expect("ERROR: CString::new failed");
+    let rtrn = CString::new("{\"Name\":\"freebsd-pkg\",\"Type\":\"0\",\"Usecontainercmds\":0}").expect("ERROR: CString::new failed");
     rtrn.into_raw()
 }
 
